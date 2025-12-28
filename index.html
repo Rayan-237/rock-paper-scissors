@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Rock paper scissors</h1>
+<p><h2>You Are playing against Me HAHAHA😈💀</h2></p>
+
+<p id="demo"></p>
+
+
+<input id="rocks" type="radio" value="rock" name="selection"> 
+<label for='rocks'>ROCK</label><br>
+<input id="papers" type="radio" value="paper" name="selection">
+<label for='papers'>PAPER</label><br>
+<input id="scissorss" type="radio" value="scissors" name="selection">
+<label for='scissorss'>SCISSORS</label><br><br><br>
+
+<button id="played" type="button" onclick = 'playGame()'>PLAY</button>
+<p id='lol'></p>
+
+
+<script>
+
+function getUserChoice(){
+let userChoice =""
+let options = document.querySelectorAll('input[name="selection"]');
+for (const option of options){
+if (option.checked){
+userChoice = option.value;
+break;
+}
+}
+if(userChoice === ""){
+document.getElementById('lol').innerHTML = "Make a choice before you play😒";
+}else{
+document.getElementById('lol').innerHTML = `You played <b>${userChoice}!!!</b> `
+
+}
+return userChoice
+}
+
+const choices = ["rock", "paper", "scissors"];
+let compChoice =""
+function getCompChoice(){
+const randomIndex = Math.floor(Math.random()*choices.length);
+compChoice = choices[randomIndex];
+document.getElementById('lol').innerHTML += `<br>I played <b>${compChoice}!!!</b> `
+return compChoice
+}
+
+function verdict(userChoice,compChoice) {
+let result=""
+
+if (userChoice === "rock" && compChoice === "scissors"){
+result = document.getElementById('lol').innerHTML += "<br><b>✅🎉You Won🎉</b>"
+}else if (userChoice === "paper" && compChoice === "rock"){
+result = document.getElementById('lol').innerHTML += "<br><b>✅🎉You Won🎉</b>"
+}else if (userChoice === "scissors" && compChoice === "paper"){
+result = document.getElementById('lol').innerHTML += "<br><b>✅🎉You Won🎉</b>"
+}else if (compChoice === "rock" && userChoice === "scissors"){
+result = document.getElementById('lol').innerHTML += "<br><b>❌You LOSE🥀💔🤣</b>"
+}else if (compChoice === "paper" && userChoice === "rock"){
+result = document.getElementById('lol').innerHTML += "<br><b>❌You LOSE🥀💔🤣</b>"
+}else if (compChoice === "scissors" && userChoice === "paper"){
+result = document.getElementById('lol').innerHTML += "<br><b>❌You LOSE🥀💔🤣</b>"
+}else if (userChoice === compChoice){
+result = document.getElementById('lol').innerHTML += "<br> <b>DRAW GAME🤝</b>"
+}else {
+result = document.getElementById('lol').innerHTML = "somethingent wrong😕"
+}
+
+return result;
+
+}
+
+function playGame(){
+document.getElementById('lol').innerHTML = ""; // reset output
+
+let user = getUserChoice();
+let comp = getCompChoice();
+
+if (user === "")return;
+
+verdict(user,comp)
+
+}
+
+
+</script>
+
+</body>
+</html>
